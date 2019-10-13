@@ -5,33 +5,39 @@ window.addEventListener("load", function() {
 
     let takeOffButton = document.getElementById("takeoff");
     let spaceShuttleHeight = document.getElementById('spaceShuttleHeight');
+    let spaceShuttleHeightValue = parseInt(spaceShuttleHeight.innerHTML);
+    let landingButton = document.getElementById("landing");
     takeOffButton.addEventListener("click", function() {
         //2A
         let liftOffResponse = confirm("Confirm that the shuttle is ready for takeoff.");
         // confirmation shuttle is ready
+        // 2b, 2C, 2D
         if (liftOffResponse) {
-            liftOffFired();
+       //     let spaceShuttleHeightValue = parseInt(spaceShuttleHeight.innerHTML);
+            document.getElementById("flightStatus").innerHTML = "Shuttle in Flight";
+            document.getElementById("shuttleBackground").style = "background-color: blue";
+            spaceShuttleHeightValue += 10000;
+            spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
         };
     });
+
+// 3  When the "Land" button is clicked, the following should happen:
+    landingButton.addEventListener("click", function() {
+        let landingAlert = alert("The shuttle is landing. Landing gear engaged.");
+        document.getElementById("flightStatus").innerHTML = "The shuttle has landed";
+        document.getElementById("shuttleBackground").style = "background-color: green";
+        spaceShuttleHeightValue = 0;
+        spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
+    });
+
 });
 
 
+// 3a    A window alert should let the user know "The shuttle is landing. Landing gear engaged."
+// 3b    The flight status should change to "The shuttle has landed."
+// 3c    The background color of the shuttle flight screen should change from blue to green.
+// 3d    The shuttle height should go down to 0.
 
-//  A window confirm should let the user know "Confirm that the shuttle is ready for takeoff." 
-//  If the shuttle is ready for liftoff, then add parts b-d.
-
-
-
-//  The flight status should change to "Shuttle in flight."
-// 2 b, c, d.
-    function liftOffFired() {
-        let spaceShuttleHeightValue = parseInt(spaceShuttleHeight.innerHTML);
-        document.getElementById("flightStatus").innerHTML = "Shuttle in Flight";
-        document.getElementById("shuttleBackground").style = "background-color: blue";
-        console.log("turn blue")
-        spaceShuttleHeightValue += 10000;
-        spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
-    }
 
       
 
