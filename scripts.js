@@ -8,6 +8,19 @@ window.addEventListener("load", function() {
     let spaceShuttleHeightValue = parseInt(spaceShuttleHeight.innerHTML);
     let landingButton = document.getElementById("landing");
     let missionAbortButton = document.getElementById("missionAbort");
+    let moveUpButton = document.getElementById("up");
+    let moveDownButton = document.getElementById("down");
+    let moveRightButton = document.getElementById("right");
+    let moveLeftButton = document.getElementById("left");
+    let rocket = document.getElementById("rocket");
+    let rocketXposition = 0; //max 500, so +/- 250
+    let rocketYposition = 0; //max height 245
+    landingButton.disabled = true;
+    missionAbortButton.disabled = true;
+    moveUpButton.disabled = true;
+    moveDownButton.disabled = true;
+    moveRightButton.disabled = true;
+    moveLeftButton.disabled = true;
 
     takeOffButton.addEventListener("click", function() {
         //2A
@@ -20,6 +33,13 @@ window.addEventListener("load", function() {
             document.getElementById("shuttleBackground").style = "background-color: blue";
             spaceShuttleHeightValue += 10000;
             spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
+            landingButton.disabled = false;
+            missionAbortButton.disabled = false;
+            moveUpButton.disabled = false;
+            moveDownButton.disabled = false;
+            moveRightButton.disabled = false;
+            moveLeftButton.disabled = false;
+            takeOffButton.disabled = true;
         };
     });
 
@@ -30,6 +50,17 @@ window.addEventListener("load", function() {
         document.getElementById("shuttleBackground").style = "background-color: green";
         spaceShuttleHeightValue = 0;
         spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
+        rocketXposition = 0;
+        rocketYposition = 0;
+        rocket.style.top = 0 + "px";
+        rocket.style.right = 0 + "px";
+        landingButton.disabled = true;
+        missionAbortButton.disabled = true;
+        moveUpButton.disabled = true;
+        moveDownButton.disabled = true;
+        moveRightButton.disabled = true;
+        moveLeftButton.disabled = true;
+        takeOffButton.disabled = false
     });
 
 
@@ -41,92 +72,52 @@ window.addEventListener("load", function() {
             document.getElementById("shuttleBackground").style = "background-color: green";
             spaceShuttleHeightValue = 0;
             spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
+            rocketXposition = 0;
+            rocketYposition = 0;
+            rocket.style.top = 0 + "px";
+            rocket.style.right = 0 + "px";  
+            landingButton.disabled = true;
+            missionAbortButton.disabled = true;
+            moveUpButton.disabled = true;
+            moveDownButton.disabled = true;
+            moveRightButton.disabled = true;
+            moveLeftButton.disabled = true;
+            takeOffButton.disabled = false 
         };
+    });
+
+ //5 UP When the "Up" button is clicked, the rocket image should move 10px up; height should increse by 10000 miles.
+    moveUpButton.addEventListener("click", function() {
+        spaceShuttleHeightValue += 10000;
+        spaceShuttleHeight.innerHTML = spaceShuttleHeightValue; 
+        rocketYposition -= 10;
+        rocket.style.top = rocketYposition + "px";      
+    });
+
+ //5 DOWN When the "Down" button is clicked, the rocket image should move 10px down; height should decrese by 10000 miles.
+    moveDownButton.addEventListener("click", function() {
+        spaceShuttleHeightValue -= 10000;
+        spaceShuttleHeight.innerHTML = spaceShuttleHeightValue; 
+        rocketYposition += 10;
+        rocket.style.top = rocketYposition + "px";      
+      
+    });
+
+ //5 RIGHT When the "Right" button is clicked, the rocket image should move 10px right.
+    moveRightButton.addEventListener("click", function() {
+        rocketXposition -= 10;
+        rocket.style.right = rocketXposition + "px";
+    });
+
+ //5 LEFT When the "Left" button is clicked, the rocket image should move 10px left.
+    moveLeftButton.addEventListener("click", function() {
+        rocketXposition += 10;
+        rocket.style.right = rocketXposition + "px";
     });
 
 
  //5   When the "Up", "Down", "Right", and "Left" buttons are clicked, the following should happen:
         // The rocket image should move 10 px in the direction of the button that was clicked.
-        // If the "Up" or "Down" buttons were clicked, then the shuttle height should increase or decrease by 10,000 miles.
-
-
-
-
-
-
-
-
-
-});
-
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Remember to pay attention to page loading!
-// let button = null;
-// let paragraph = null;
-// let missionAbort = null;
-
-// function init () {
-//     missionAbort = document.getElementById("abortMission");
-//     button = document.getElementById("liftoff");
-//     paragraph = document.querySelector("p");
-
-//     // Put your code for the exercises here.
-//     function liftOffFired() {
-//         document.getElementById("text-change").innerHTML = "Houston, we have lift off!";
-//     }
-//     button.addEventListener("click", liftOffFired);
-
-//     function confirmAbortMission() {
-//         document.getElementById("abortMission");
-//         confirm("Are you sure you want to abort the mission?");
+        // If the "Up" or "Down" buttons were clicked, then the shuttle height should increase or decrease by 10,000 miles
         
-//     }
-//     missionAbort.addEventListener("click", confirmAbortMission);
-// }
-
-// window.onload = init;
-//use 2nd version
-
-{/* <script>
-    window.addEventListener("load", function() {
-      let form = document.querySelector("form");
-      form.addEventListener("submit", function(event) {
-        let usernameInput = document.querySelector("input[name=username]");
-         let teamName = document.querySelector("input[name=team]");
-         if (usernameInput.value === "" || teamName.value === "") {
-            alert("All fields are required!");
-            event.preventDefault();
-         }
-        alert("username: " + usernameInput.value);
-      });
-    });
-  </script>
- */}
-
-
-// Use the window load event to ensure all elements have loaded before attaching event handlers.
-// When the "Take off" button is clicked, the following should happen:
-
-//     The background color of the shuttle flight screen (id = "shuttleBackground") should change from green to blue.
-//     The shuttle height should increase by 10,000 miles.
-
+});
