@@ -1,12 +1,14 @@
 // Write your JavaScript code here.
 // 1. Use the window load event to ensure all elements have loaded before attaching event handlers.
 window.addEventListener("load", function() {
-// 2. When the "Take off" button is clicked, the following should happen:
+ // 2. When the "Take off" button is clicked, the following should happen:
 
     let takeOffButton = document.getElementById("takeoff");
     let spaceShuttleHeight = document.getElementById('spaceShuttleHeight');
     let spaceShuttleHeightValue = parseInt(spaceShuttleHeight.innerHTML);
     let landingButton = document.getElementById("landing");
+    let missionAbortButton = document.getElementById("missionAbort");
+
     takeOffButton.addEventListener("click", function() {
         //2A
         let liftOffResponse = confirm("Confirm that the shuttle is ready for takeoff.");
@@ -21,7 +23,7 @@ window.addEventListener("load", function() {
         };
     });
 
-// 3  When the "Land" button is clicked, the following should happen:
+ // 3  When the "Land" button is clicked, the following should happen:
     landingButton.addEventListener("click", function() {
         let landingAlert = alert("The shuttle is landing. Landing gear engaged.");
         document.getElementById("flightStatus").innerHTML = "The shuttle has landed";
@@ -30,13 +32,33 @@ window.addEventListener("load", function() {
         spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
     });
 
+
+ //4   When the "Abort Mission" button is clicked, the following should happen:
+    missionAbortButton.addEventListener("click", function() {
+        let missionAbortResponse = confirm("Confirm that you want to abort the mission.");
+        if (missionAbortResponse) {
+            document.getElementById("flightStatus").innerHTML = "Mission aborted.";
+            document.getElementById("shuttleBackground").style = "background-color: green";
+            spaceShuttleHeightValue = 0;
+            spaceShuttleHeight.innerHTML = spaceShuttleHeightValue;
+        };
+    });
+
+
+ //5   When the "Up", "Down", "Right", and "Left" buttons are clicked, the following should happen:
+        // The rocket image should move 10 px in the direction of the button that was clicked.
+        // If the "Up" or "Down" buttons were clicked, then the shuttle height should increase or decrease by 10,000 miles.
+
+
+
+
+
+
+
+
+
 });
 
-
-// 3a    A window alert should let the user know "The shuttle is landing. Landing gear engaged."
-// 3b    The flight status should change to "The shuttle has landed."
-// 3c    The background color of the shuttle flight screen should change from blue to green.
-// 3d    The shuttle height should go down to 0.
 
 
       
