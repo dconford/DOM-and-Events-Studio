@@ -88,31 +88,40 @@ window.addEventListener("load", function() {
 
  //5 UP When the "Up" button is clicked, the rocket image should move 10px up; height should increse by 10000 miles.
     moveUpButton.addEventListener("click", function() {
-        spaceShuttleHeightValue += 10000;
-        spaceShuttleHeight.innerHTML = spaceShuttleHeightValue; 
-        rocketYposition -= 10;
-        rocket.style.top = rocketYposition + "px";      
+        if (rocketYposition >= 0) {
+            spaceShuttleHeightValue += 10000;
+            spaceShuttleHeight.innerHTML = spaceShuttleHeightValue; 
+            rocketYposition -= 10;
+            rocket.style.top = rocketYposition + "px";     
+        }    
     });
 
  //5 DOWN When the "Down" button is clicked, the rocket image should move 10px down; height should decrese by 10000 miles.
     moveDownButton.addEventListener("click", function() {
-        spaceShuttleHeightValue -= 10000;
-        spaceShuttleHeight.innerHTML = spaceShuttleHeightValue; 
-        rocketYposition += 10;
-        rocket.style.top = rocketYposition + "px";      
-      
+        if (rocketYposition <= 240) {
+            spaceShuttleHeightValue -= 10000;
+            spaceShuttleHeight.innerHTML = spaceShuttleHeightValue; 
+            rocketYposition += 10;
+            rocket.style.top = rocketYposition + "px";     
+        }
     });
 
  //5 RIGHT When the "Right" button is clicked, the rocket image should move 10px right.
     moveRightButton.addEventListener("click", function() {
-        rocketXposition -= 10;
-        rocket.style.right = rocketXposition + "px";
+        if (rocketXposition > -270) {
+            rocketXposition -= 10;
+            rocket.style.right = rocketXposition + "px";    
+        }
+        
     });
 
  //5 LEFT When the "Left" button is clicked, the rocket image should move 10px left.
     moveLeftButton.addEventListener("click", function() {
-        rocketXposition += 10;
-        rocket.style.right = rocketXposition + "px";
+        if (rocketXposition < 270) {
+            rocketXposition += 10;
+            rocket.style.right = rocketXposition + "px";
+        }
+        
     });
 
 
